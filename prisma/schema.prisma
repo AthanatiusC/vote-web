@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model totalvotes {
+  id             Int       @id(map: "total_votes_pkey") @default(autoincrement())
+  candidate_name String    @db.VarChar(255)
+  total_vote     Decimal   @db.Decimal
+  updated_at     DateTime? @db.Timestamp(6)
+  created_at     DateTime? @db.Timestamp(6)
+}
+
+model votes {
+  id          Int      @id @default(autoincrement())
+  kandidat    Decimal? @db.Decimal
+  kabupaten   String?  @db.VarChar(255)
+  kecamatan   String?  @db.VarChar(255)
+  kelurahan   String?  @db.VarChar(255)
+  tps         String?  @db.VarChar(255)
+  hasil_suara Decimal? @db.Decimal
+}
