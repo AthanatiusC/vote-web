@@ -7,3 +7,11 @@ CREATE TABLE votes (
     tps       VARCHAR(255),
     hasil_suara NUMERIC
 );
+
+CREATE TABLE totalvotes (
+    id SERIAL PRIMARY KEY
+    candidate_name VARCHAR(255),
+    total_vote NUMERIC,
+    update_at TIMESTAMP,
+    created_at TIMESTAMP
+);
