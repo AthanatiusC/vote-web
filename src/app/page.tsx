@@ -1,7 +1,6 @@
 import prisma from "./prisma"
 import { PieChart } from '@mui/x-charts';
 import {Container,Typography,Card,TableContainer,TableHead,TableRow,Table,TableCell,Paper,TableBody} from "@mui/material"
-import { space } from "postcss/lib/list";
 
 export default async function Home() {
   const totalVote = await prisma.totalvotes.findMany()
