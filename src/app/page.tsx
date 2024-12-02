@@ -6,6 +6,9 @@ export default async function Home() {
   const totalVoteBupati = await prisma.totalvotes.findMany({
     where:{
       types:"bupati"
+    },
+    orderBy:{
+      total_vote:"desc"
     }
   })
   interface VoteData{
@@ -17,13 +20,16 @@ export default async function Home() {
   const pieDataBupati:VoteData[] = []
 
   totalVoteBupati.forEach((val,i)=>{
-    pieDataBupati.push({id:i,value:Number(val.total_vote),label:val.candidate_name??""})
+    pieDataBupati.push({id:val.id,value:Number(val.total_vote),label:val.candidate_name??""})
   })
 
 
   const totalVoteGubernur = await prisma.totalvotes.findMany({
     where:{
       types:"gubernur"
+    },
+    orderBy:{
+      total_vote:"desc"
     }
   })
   interface VoteData{
@@ -35,7 +41,7 @@ export default async function Home() {
   const pieDataGubernur:VoteData[] = []
 
   totalVoteGubernur.forEach((val,i)=>{
-    pieDataGubernur.push({id:i,value:Number(val.total_vote),label:val.candidate_name??""})
+    pieDataGubernur.push({id:val.id,value:Number(val.total_vote),label:val.candidate_name??""})
   })
   
   return (
