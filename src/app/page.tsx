@@ -19,7 +19,7 @@ export default async function Home() {
 
   const pieDataBupati:VoteData[] = []
 
-  totalVoteBupati.forEach((val,i)=>{
+  totalVoteBupati.forEach((val)=>{
     pieDataBupati.push({id:val.id,value:Number(val.total_vote),label:val.candidate_name??""})
   })
 
@@ -40,7 +40,7 @@ export default async function Home() {
 
   const pieDataGubernur:VoteData[] = []
 
-  totalVoteGubernur.forEach((val,i)=>{
+  totalVoteGubernur.forEach((val)=>{
     pieDataGubernur.push({id:val.id,value:Number(val.total_vote),label:val.candidate_name??""})
   })
   
