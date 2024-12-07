@@ -8,10 +8,21 @@ datasource db {
 }
 
 model totalvotes {
-  id             Int       @id @default(autoincrement())
-  candidate_name String?   @db.VarChar(255)
-  total_vote     Decimal?  @db.Decimal
-  updated_at     DateTime? @db.Timestamp(6)
-  created_at     DateTime? @db.Timestamp(6)
-  types          String?   @db.VarChar(256)
+  id                      Int                       @id @default(autoincrement())
+  candidate_name          String?                   @db.VarChar(255)
+  total_vote              Decimal?                  @db.Decimal
+  updated_at              DateTime?                 @db.Timestamp(6)
+  created_at              DateTime?                 @db.Timestamp(6)
+  types                   String?                   @db.VarChar(256)
+  regional_candidate_vote regional_candidate_vote[]
+}
+
+model regional_candidate_vote {
+  id              Int         @id @default(autoincrement())
+  candidate_id    Int?
+  regional_name   String?     @db.VarChar(255)
+  data_sirekap    Decimal?    @db.Decimal
+  data_quickcount Decimal?    @db.Decimal
+  updated_at      DateTime?   @db.Timestamp(6)
+  totalvotes      totalvotes? @relation(fields: [candidate_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
